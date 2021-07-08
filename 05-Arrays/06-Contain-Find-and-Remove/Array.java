@@ -20,7 +20,7 @@ public class Array {
         return data.length;
     }
 
-    public bool isEmpty() {
+    public boolean isEmpty() {
         return size == 0;
     }   
 
