@@ -3,7 +3,7 @@ public class Array<E> {
     private E[] data;
     private int size;
 
-    public Array(int capaticy) {
+    public Array(int capacity) {
         data = (E[])new Object[capacity];
         size = 0;
     }
@@ -32,9 +32,9 @@ public class Array<E> {
             resize(2 * data.length);
         }
         for (int i = size - 1; i >= index; i--) {
-            arr[i + 1] = arr[i];
+            data[i + 1] = data[i];
         }
-        arr[index] = e;
+        data[index] = e;
         size++;
     }
 
@@ -109,8 +109,26 @@ public class Array<E> {
         }
     }
 
+    @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
-        res.append(String.format("Array: size = %d, capacity = %d\n"))
+        res.append(String.format("Array: size = %d, capacity = %d\n", size, data.length));
+        res.append('[');
+        for (int i = 0; i < size; i++) {
+            res.append(data[i]);
+            if (i != size - 1) {
+                res.append(", ");
+            }
+        }
+        res.append("]");
+        return res.toString();
+    }
+
+    private void resize(int newCapacity) {
+        E[] newData = (E[])new Object[newCapacity];
+        for (int i = 0; i < size; i++) {
+            newData[i]=  data[i];
+        }
+        data = newData;
     }
 }
